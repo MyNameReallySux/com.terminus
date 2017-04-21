@@ -1,0 +1,15 @@
+// #############################
+//   Column Specs
+// #############################
+
+$use-flex: true;
+
+$content-width: 1200px;
+$section-padding: 50px;
+
+$gutter-width: 15px;
+$spacer-height: 10px;
+$side-padding: $gutter-width / 2;
+
+$max-columns: 12;
+$max-boxes: 8;

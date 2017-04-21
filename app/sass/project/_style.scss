@@ -1,0 +1,212 @@
+/* ##############################
+	Project Custom Styles
+############################## */
+
+main {
+	> section {
+		max-width: 800px;
+		margin: 0 auto;
+
+		& + section {
+			border-top: solid 2px $divider-color;
+		}   
+	}
+}
+
+#Palette {
+	#Base {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	
+	.row.auto-xs16 {
+		padding: 0 5px;
+		.box {
+			$width: (100% / 16);
+			min-width: $width;
+			flex-grow: 0;
+			margin-left: 0;
+			padding: 3px;
+
+			.square {
+				padding-bottom: 100%;
+				
+				border: solid 1px black;
+			}
+		}
+	}
+}
+
+#TextColors {
+	div > div + div {
+		margin-top: 2.2px;
+	}
+}
+
+#GridSystem {
+	font-size: 80%;
+
+	%class-label {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		font-style: italic;
+		color: #777777;
+	}
+	
+	.container .container {
+		$offset: 25px;
+		position: relative;
+		text-align: center;
+		border: solid 1px black;
+		padding: $offset $offset;
+		
+		&:before {
+			content: "container";
+			@extend %class-label;
+			
+			padding: 2px ($offset - 10px) 0;
+			left: -10px;
+
+		}
+		
+		.group {
+			border: solid 1px black;
+			position: relative;
+			top: -4px;
+
+			&:after {
+				@extend %class-label;
+				content: "group";
+				left: auto;
+				top: auto;
+				right: 5px;
+				bottom: -13px;
+			}
+
+			> .box {
+				padding: 4px 5px;
+				> div {
+					&:before {
+						top: 4px;
+					}
+				}
+			}
+		}
+		
+		.row {
+			$offset: 5px;
+			border: solid 1px black;
+			background: $alabaster;
+			padding: 20px ($offset + $side-padding) 10px;
+
+			.box > div, .col > div {
+				border: solid 1px black;
+				height: 40px;
+				background: $white;
+				line-height: 40px;
+
+				&:before {
+					@extend %class-label;
+
+					padding: 3px ($side-padding * 2) 0;
+					line-height: 1;
+					left: -4px;
+				}
+			}
+
+			.box > div {
+				&:before {
+					// content: "box";
+				}
+			}
+
+			.col > div {
+				&:before {
+					// content: "col";
+				}
+			}
+			
+			&:before {
+				content: "row";
+				padding: 2px ($gutter-width + $offset * 2) 0;
+				left: -20px;
+				@extend %class-label;
+			}
+
+			& + .row {
+				border-top: none;
+			}
+		}
+		.group.seamless {
+			padding: 4px 5px;
+			
+			.box {
+				padding: 0;
+
+				& > div {
+					line-height: 30px;
+					height: 30px;
+				}
+			}
+		}
+		.row, .group {
+			&.seamless {
+				&:before {
+					padding: 2px $gutter-width 0;
+					left: -10px;
+				}
+				
+				> .box + .box,
+				> .col + .col {
+					& > div {
+						border-left: none;
+					}
+				}
+				
+				> .group + .group {
+					border-left: none;
+				}
+
+				.box > div {
+					&:before {
+						left: -10px;
+					}
+				}
+
+				.col > div {
+					&:before {
+						left: -10px;
+					}
+				}
+			}
+		}
+	}
+}
+
+#Accordians {
+	.mock-accordian-link {
+		background: #eeeeee;
+    	padding: 5px 10px;
+	}
+	
+	.accordian {
+		> i, > i.fa {
+			display: block;
+			width: 100%;
+			text-align: right;
+		}
+		&.open.mock-accordian-link {
+			padding: 0px 0px;
+
+			> i, > i.fa {
+				padding: 5px 10px;
+				border-bottom: solid 1px $alto;
+
+				&:before {
+					content: "\F00D";
+				}
+			}
+		}
+	}
+}

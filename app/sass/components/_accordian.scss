@@ -1,0 +1,47 @@
+/* ##############################
+	Accordian
+############################## */
+
+// ##############################
+//	.accordian(.open)
+//		.accordian-link
+//			a
+//				i
+//		.accordian-content
+//			div
+// ############################## 
+
+.accordian {
+	border: solid 1px rgba(0, 0, 0, 0.25);
+	border-radius: 4px;
+	.accordian-link {
+		background: #eeeeee;
+		padding: 5px 10px;
+		
+		i:before {
+			content: "\f078";
+			margin-left: 5px;
+		}
+	}
+	
+	.accordian-content {	
+		display: none;
+		
+		background: white;
+		padding: 5px;
+	}
+	
+	&.open {
+		.accordian-link {
+			border-bottom: solid 1px  rgba(0, 0, 0, 0.25);
+			
+			i:before {
+				content: "\f00d";
+				margin-left: 5px;
+			}
+		}
+		.accordian-content {
+			display: block;
+		}
+	}
+}

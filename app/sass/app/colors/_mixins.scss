@@ -1,0 +1,123 @@
+// #############################
+//   Mixins
+// ############################# 
+
+@function is-direction($value) {
+    $is-keyword: index((to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
+    $is-angle: type-of($value)=='number' and index('deg' 'grad' 'turn' 'rad', unit($value));
+    @return $is-keyword or $is-angle;
+}
+
+@mixin for-each-color($colors, $attr: null){
+    @each $name, $hex in $colors {
+        &.#{$name} {
+			@if $attr != null { #{$attr}: $hex; }
+			@content;
+        }
+    }
+}
+
+@mixin linear-gradient($direction, $color-stops...) {
+    @if is-direction($direction)==false {
+        $color-stops: $direction, $color-stops;
+        $direction: 180deg;
+    }
+    background: nth(nth($color-stops, 1), 1);
+    background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+    background: linear-gradient($direction, $color-stops);
+}
+
+@function legacy-direction($value){
+    @if is-direction($value)==false {
+        @error "Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be a direction.";
+    }
+    $conversion-map: ( 
+        to top: bottom,
+        to top right: bottom left,
+        to right top: left bottom, 
+        to right: left,
+        to bottom right: top left,
+        to right bottom: left top,
+        to bottom: top,
+        to bottom left: top right,
+        to left bottom: right top, 
+        to left: right,
+        to left top: right bottom,
+        to top left: bottom right);
+    @if map-has-key($conversion-map, $value) {
+        @return map-get($conversion-map, $value);
+    }
+    @return 90deg - $value;
+}
+
+@function generate-shade-map($increment, $quantity){
+	$map: ();
+	$midpoint: $quantity + 1;
+	$max-quantity: ($quantity * 2) + 1;
+	@for $i from 1 to $max-quantity + 1 {
+		@if $i == $midpoint {
+			$map: map-merge($map, (base: 0));
+		} @else if $i < $midpoint {
+			$index: $midpoint - $i;
+			$value: $index * $increment;
+			$map: map-merge($map, (light-#{$index}: $value));
+		} @else if $i > $midpoint {
+			$index: $i - $midpoint;
+			$value: $index * $increment;
+			$map: map-merge($map, (dark-#{$index}: $value));
+		}
+	}
+	@return $map;
+}
+
+@mixin make-color-class($color, $hex, $modifier: null){
+	@if $modifier == null {
+		.#{$color}:not(svg) {
+			background: $hex;
+		}
+
+		.#{$color}-text {
+			color: $hex
+		}
+	} @else {
+		.#{$color}.#{$modifier}:not(svg) {
+			background: $hex;
+		}
+
+		.#{$color}-text.#{$modifier} {
+			color: $hex
+		}
+	}
+	
+}
+
+@mixin make-shaded-color-class($color, $hex, $shade: "base", $percent: 0%){
+	@if $shade == "base" or ($percent / 1%) == 0 {
+		@include make-color-class($color, $hex);
+	} @else if str-index($shade, "light") != null {
+		@include make-color-class($color, lighten($hex, $percent), $shade);
+	} @else if str-index($shade, "dark") != null  {
+		@include make-color-class($color, darken($hex, $percent), $shade);
+	}	
+}
+
+@mixin make-color-classes($color-map, $shade-map: null){
+	@if $shade-map == null {
+		$shade-map: ("base": 0)
+	}
+	@each $color, $hex in $color-map {
+		@each $shade, $percent in $shade-map {
+			@if $shade == "base" or $percent == 0 {
+				@include make-color-class($color, $hex);
+			} @else {
+				@if str-index($shade, "light") != null {
+					@include make-shaded-color-class($color, $hex, $shade, $percent);
+				} @else if str-index($shade, "dark") != null {
+					@include make-shaded-color-class($color, $hex, $shade, $percent);
+				}
+			}
+		}
+	}
+	
+}
+

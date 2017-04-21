@@ -1,0 +1,361 @@
+// #############################
+//  Typography | Styles
+// #############################
+
+body, textarea {
+    font-family: $font;
+    color: $text-color;
+}
+
+// #############################
+//  Headers
+// #############################
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: $heading-font;
+    margin: 7.5px 0;
+    padding: 5px 0;   
+}
+
+h1, .h1 {
+    font-size: $h1-size;
+}
+
+h2, .h2 {
+    font-size: $h2-size;
+}
+
+h3, .h3 {
+    font-weight: bold;
+    font-size: $h3-size;
+    
+   
+}
+
+h4, .h4 {
+    font-size: $h4-size;
+}
+
+h5, .h5 {
+    font-size: $h5-size;
+    text-decoration: underline;
+}
+
+h6, .h6 {
+    font-size: $h6-size;
+    color: $grey;
+}
+
+@each $name, $hex in $shades {
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+        &.#{$name}, &.display.#{$name} {
+            background: $hex;
+        }
+        
+        &.#{$name}-text, &.display.#{$name}-text {
+            color: $hex;
+        }
+    }
+}
+
+// #############################
+//  Paragraphs
+// #############################
+
+p {
+    text-align: left;
+    line-height: 150%;
+    font-size: 1em;
+    margin-bottom: 15px;
+    
+    &.leading:first-letter {
+        display: inline-block;
+        font-size: 3em;
+        margin-top: 12px;
+        margin-right: 5px;
+        float: left;
+        font-family: 'Georgia', 'Times', serif;
+        
+        @include respond-to($ms){
+            margin-top: 12px;
+        }
+        @include respond-to($s){
+            margin-top: 13px;
+        }
+        @include respond-to($m){
+            margin-top: 14px;
+        }
+        @include respond-to($l){
+            margin-top: 15px;
+        }
+        @include respond-to($xl){
+            margin-top: 16px;
+        }
+    }
+
+    &.leading:first-line {
+        font-weight: bold;
+    }
+        
+    &.lead-strong:first-line {
+        font-weight: bold;
+        font-size: 32px;
+    }
+}
+
+.content p, p.content {
+    @include flex-text(150%, 10%);
+}
+
+// #############################
+//  Inline Styles
+// #############################
+
+a {
+    text-decoration: none;
+    color: $link-color;
+    
+    &:hover {
+        color: $link-hover-color;
+    }
+    
+    &:focus, &.focus,
+    &:active, &.active {
+        color: $link-focus-color;
+    }
+}
+
+em {
+    font-style: italic;
+}
+
+small {
+    font-size: 80%;
+}
+
+strong {
+    font-weight: bold;
+}
+
+// #############################
+//  BlockQuotes
+// #############################
+
+q {
+    @include normalize-quote();
+}
+
+blockquote.fancy {
+	background-color: $alabaster;
+	border: solid 4px rgba($grey, 0);    
+	display: block;
+	margin: 25px auto 15px;
+	max-width: 680px;
+	position: relative;
+	text-align: center;
+	width: 100%;
+	padding: 0 5px 5px 5px;
+	color: $grey;
+
+	@include transition();
+
+	cite {
+		margin-top: 5px;
+		font-size: 100%;
+		text-align: right;
+		display: block;
+		@include transition();
+
+		&:before {
+			content: $fa-var-user;
+			@include fa-icon; 
+			margin-right: 5px;
+
+		}
+	}
+	
+	p {
+		display: block;
+		font-size: 120%;
+		padding: 15px;
+		quotes: "\201C""\201D""\2018""\2019";
+		text-indent: 50px;
+
+		&:before {
+			content: $fa-var-quote-left;
+			@include fa-icon();
+			position: absolute;   
+			width: 60px;
+			height: 60px;
+			color: $white;
+			left: -45px;
+			top: -15px;   
+		}  
+		
+		&:before,
+		&:after {
+			font-size: 34px;
+			line-height: 1.5;
+		}
+	}
+
+	&:before {
+		content: "";
+		display: block;
+		width: 60px;
+		height: 60px;
+		background-color: $grey;
+		position: absolute;
+		top: -20px;
+		left: -10px;
+		@include transition(transform 0.15s ease, 
+			background-color 0.4s ease, 
+			border-radius 0.4s ease,
+			font-size 0.4s ease);
+	}
+
+	&:hover {
+		border: solid 4px rgba($primary, 1);
+		&, p, cite {
+			color: $primary;
+		}
+		&:before {
+			background-color: $primary;
+			@include border-radius(10%);
+			@include transform(rotateZ(45deg));
+		}
+	}
+
+	/*
+	&:before,
+	&:after {
+		font-family: $blockquote-font; 
+		font-size: 3em;
+		line-height: 0.1em;
+		vertical-align: -0.5em;
+	}
+
+	&:before {
+		margin-right: 0.25em;
+		content: open-quote;
+	}
+
+	&:after {
+		margin-left: 0.25em;
+		content: close-quote;
+	}
+	*/
+}
+blockquote:not(.fancy) {
+	border-left: solid 4px $primary;
+	padding: 5px 10px;
+	background: $alabaster;
+	margin-bottom: 15px;
+
+	p {
+		margin: 0;
+	}
+
+	cite {
+		margin-top: 5px;
+		font-size: 80%;
+		text-align: right;
+		display: block;
+		color: $grey;
+
+		&:before {
+			content: $fa-var-user;
+			@include fa-icon; 
+			margin-right: 5px;
+
+		}
+	}
+}
+
+// #############################
+//  Horizontal & Vertical Rules
+// #############################
+
+hr {
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    border-color: $divider-color;
+    background-color: transparent;
+	
+	@include for-each-color($theme-colors, "border-color");
+	@include for-each-color($colors, "border-color"){
+		background: transparent;
+	}
+    
+    &.break {
+        border-width: 0 0 3px 0;
+        width: 100%;
+        margin: 20px 0;
+    }
+    
+    &.center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    &.short {
+        width: 60px;
+    }
+    
+    &.medium {
+        width: 100px;
+    }
+    
+    &.long {
+        width: 140px;
+    }
+    
+    &.qtr {
+        width: 25%;
+    }
+    
+    &.half {
+        width: 50%;
+    }
+    
+    &.three-qtr {
+        width: 75%;
+    }
+    
+    &.nine-tenths {
+        width: 90%;
+    }
+    
+    &.full {
+        width: 100%;
+    }
+	
+     &.double {
+        height: 12px;
+		background: transparent;
+        border-width: 4px 0;
+    }
+	
+	&.dotted {
+        border-style: dotted;
+    }
+    
+}
+
+
+// WEBPACK FOOTER //
+// ./app/sass/E:/Programming/Projects/Web/com.terminus/app/sass/app/typography/_style.scss
+
+
+// WEBPACK FOOTER //
+// ./app/sass/E:/Programming/Projects/Web/com.terminus/app/sass/app/typography/_style.scss
+
+
+// WEBPACK FOOTER //
+// ./app/sass/E:/Programming/Projects/Web/com.terminus/app/sass/app/typography/_style.scss
+
+
+// WEBPACK FOOTER //
+// ./app/sass/E:/Programming/Projects/Web/com.terminus/app/sass/app/typography/_style.scss

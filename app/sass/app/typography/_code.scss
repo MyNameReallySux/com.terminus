@@ -1,0 +1,93 @@
+pre, code {
+    position: relative;
+    font-family: "Inconsolata", monospace;
+    background: $gallery;
+    @include border-radius(2px);
+}
+
+pre {
+    display: block;
+    padding: 10px 10px;
+    white-space: pre-wrap;
+    border: solid 1px; 
+	font-size: 80%;
+	line-height: 1.2;
+
+	> code {
+		background: none;
+	}
+	
+	&[data-caption] {
+		padding-top: 25px;
+		
+		&:before {
+			box-sizing: border-box;
+			content: attr(data-caption);
+			display: block;
+			@include position(absolute 0px 0 0 0px);
+
+			color: $grey;
+			border-bottom: solid 1px $alto;
+
+			width: 100%;
+			height: 22px;
+			padding: 4px 10px;
+
+			font-style: italic;
+		}
+	}
+
+    &:after {
+		display: block;
+		@include position(absolute 2px 2px 0 0);
+		
+		width: auto;
+		padding: 1px 4px;
+		
+		background: $alto;
+		color: $grey;
+        border: solid 1px $grey; 
+		@include border-radius(2px);
+		
+        font-family: $font;
+		font-size: 90%;
+            
+    }
+    
+    &.language-html {
+		&:after {
+			content: "HTML5";
+			font-family: Arial, sans-serif;
+			text-transform: uppercase;
+			font-weight: 900;
+		}
+        .tag {
+            color: $indigo;
+        }
+		
+		.attr-name {
+			color: $green;
+		}
+        
+        .attr-value {
+            color: $carrot;
+			
+			& > .punctuation:first-child {
+				color: $purple;
+			}
+        }
+    }
+}
+
+p code {
+    display: inline-block;
+    padding: 1px 4px 2px;
+    
+    &.wrap:before {
+        content: "<";
+    }
+    
+    &.wrap:after {
+        content: ">";
+    }
+}

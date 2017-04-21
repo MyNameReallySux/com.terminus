@@ -1,0 +1,7 @@
+// #############################
+//   Color Styles
+// #############################
+
+// @include make-color-classes($theme-colors, generate-shade-map(5, 5));
+
+@include make-color-classes($colors, generate-shade-map(7, 5));

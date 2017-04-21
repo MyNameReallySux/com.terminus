@@ -1,0 +1,183 @@
+// #############################
+//  Color Maps
+//      
+//  These Maps are used to define what is used by the
+//  generator.   
+// #############################   
+    
+// #############################
+//  Shade Map
+// ############################# 
+
+// These shades do not support Brightness Classes. will be
+// defined in the format of "${color-name}".
+    
+$shades: (
+    "black":        $black,
+    "inverse":      $inverse,
+    "highlight":    $highlight,
+    "white":        $white,
+    "transparent":  $transparent,
+);
+
+// #############################
+//   Brightness Map
+// ############################# 
+
+// Anything with Light in it will lighten by that %
+// Anything with Dark in it will darken by that %
+
+$brightness-5: (
+    "light-5":    $b25,
+    "light-4":    $b20,
+    "light-3":    $b15,
+    "light-2":    $b10,
+    "light-1":    $b5,
+
+    "base":        0,
+    
+    "dark-1":     $b5,
+    "dark-2":     $b10,
+    "dark-3":     $b15,
+    "dark-4":     $b20,
+    "dark-5":     $b25,
+);
+
+$brightness-6: (
+	"light-5":    $b30,
+    "light-4":    $b24,
+    "light-3":    $b18,
+    "light-2":    $b12,
+    "light-1":    $b6,
+
+    "base":        0,
+    
+    "dark-1":     $b6,
+    "dark-2":     $b12,
+    "dark-3":     $b18,
+    "dark-4":     $b24,
+    "dark-5":     $b30,
+);
+
+$brightness-7: (
+	"light-5":    $b35,
+    "light-4":    $b28,
+    "light-3":    $b21,
+    "light-2":    $b14,
+    "light-1":    $b7,
+
+    "base":        0,
+    
+    "dark-1":     $b7,
+    "dark-2":     $b14,
+    "dark-3":     $b21,
+    "dark-4":     $b28,
+    "dark-5":     $b35,
+);
+
+// #############################
+//  Colors Map
+// ############################# 
+    
+    // These Colors will be have support for brightness values
+    // as defined in the Brightness Map. Classes will be in the
+    // format of "${color-name}.${brightness-level}".
+
+$colors: (
+ 	"alabaster"	 $alabaster,  
+    "gallery"  	 $gallery,  
+    "alto" 		 $alto, 
+    "silver"     $silver,     
+    "grey"       $grey,       
+    "tundora"    $tundora,      
+    "shark"      $shark,     
+
+    "cadet"      $cadet,       
+    "smoke"      $smoke,      
+    "metal"      $metal,      
+    "darkslate"  $darkslate,  
+
+    "champaign"  $champaign,  
+    "wheat"      $wheat,      
+    "peach"      $peach,      
+    "apricot"    $apricot,    
+    "coral"      $coral,      
+    "salmon"     $salmon,     
+
+    "red"        $red,        
+    "crimson"    $crimson,    
+    "brick"      $brick,      
+    "burgundy"   $burgundy,   
+
+    "pink"       $pink,       
+    "fuscia"     $fuscia,     
+    "rose"       $rose,       
+    "raspberry"  $raspberry,  
+    "cerise"     $cerise,     
+
+    "orange"     $orange,     
+    "carrot"     $carrot,     
+    "pumpkin"    $pumpkin,    
+    "tangelo"    $tangelo,    
+    "orangered"  $orangered,
+
+    "tan"        $tan,        
+    "lion"       $lion,       
+    "brown"      $brown,      
+    "cyote"      $cyote,      
+    "chocolate"  $chocolate,  
+
+    "bronze"     $bronze,     
+    "copper"     $copper,     
+    "mahogony"   $mahogony,   
+    "sinopia"    $sinopia,    
+    "sienna"     $sienna,     
+
+    "lemon"      $lemon,      
+    "yellow"     $yellow,     
+    "gold"       $gold,       
+    "amber"      $amber,      
+    "goldenrod"  $goldenrod,  
+
+    "lime"       $lime,       
+    "forest"     $forest,     
+    "green"      $green,      
+
+    "turquoise"  $turquoise,  
+    "cyan"       $cyan,       
+    "teal"       $teal,       
+
+    "indigo"     $indigo,     
+    "blue"       $blue,       
+    "sky"        $sky,        
+
+    "lavender"   $lavender,   
+    "violet"     $violet,     
+    "purple"     $purple,     
+    "magenta"    $magenta,    
+);
+
+// #############################
+//   Theme Colors To Use
+// ############################# 
+
+$theme-colors: (
+    "primary":      $primary,
+    "secondary":    $secondary,
+    "tertiary":     $tertiary,
+    "quaternary":   $quaternary,
+    "quinary":      $quinary,
+    "senary":       $senary,
+    
+    "prompt":       $blue,
+    "info":         $sky,
+    "success":      $green,
+    "warning":      $orange,
+    "danger":       $red
+);
+
+// #############################
+//   Color Configuration
+// ############################# 
+
+$brightness: $brightness-6;

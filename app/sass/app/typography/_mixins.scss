@@ -1,0 +1,53 @@
+// #############################
+//  Typography| Mixins
+// #############################
+
+@mixin normalize-quote(){
+    quotes: "\201C""\201D""\2018""\2019";
+    
+    &:before, &:after {
+        font-family: $blockquote-font; 
+        display: inline;
+        line-height: inherit;
+    }
+    
+    &:before {
+        content: open-quote;
+    }
+
+    &:after {
+        content: close-quote;
+    }
+}
+
+@function get-headers {
+	@return "h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6"
+}
+
+@mixin style-headers(){
+	h1, h2, h3, h4, h5, h6,
+	.h1, .h2, .h3, .h4, .h5, .h6 {
+		@content
+	}
+}
+
+@mixin flex-text($base, $delta: 1px, $breakpoints: $breakpoints){
+    font-size: $base; 
+    
+    $count: length($breakpoints);
+    @for $i from 1 through $count {
+        $index: $count - ($i - 1);
+        $pair:  nth($breakpoints, $index);
+        $size:  nth($pair, 1);
+        $media: nth($pair, 2); 
+        $multiplier: $i - 1;
+        
+        @if($multiplier > 0) {
+            @include respond-to($size, true){
+                $size-delta: $delta * $multiplier;
+                $new-size: $base - $size-delta;
+                font-size: $new-size;
+            }    
+        }
+    }
+}

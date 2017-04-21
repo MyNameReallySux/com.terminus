@@ -1,0 +1,182 @@
+/* ############################
+    Helper Styles
+############################ */
+
+// Position Helpers
+
+.center {
+    @include center(block);
+}
+
+.center-text {
+    @include center(inline);
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+// Spacing Helpers
+
+$pixel-map: (
+    0, 5, 10, 15, 20
+);
+
+$space-map: (
+    "space": "margin",
+    "pad": "padding"
+);
+
+$dir-map: (
+    "top", "right", "bottom", "left",
+);
+
+@each $value in $pixel-map {
+    $number: strip-unit($value);
+    $value: $number + px;
+    
+    @each $space, $attribute in $space-map {
+        .#{$space}-#{$number} {
+            #{$attribute}: $value
+        }
+    
+        @each $dir in $dir-map {
+            .#{$space}-#{$dir}-#{$number} {
+                #{$attribute}-#{$dir}: $value;
+            } 
+        }
+
+        .#{$space}-vert-#{$number} {
+            #{$attribute}-top: $value;
+            #{$attribute}-bottom: $value;
+        }
+
+        .#{$space}-side-#{$number} {
+            #{$attribute}-left: $value;
+            #{$attribute}-right: $value;
+        }
+    }
+}
+
+// Size Helpers
+
+$max: 600;
+$min: 200;
+$delta: 50;
+$range: (($max - $min) / $delta) + 2;
+
+@for $i from 1 to $range {
+    $diff: $delta * $i;
+    $base: $min - $delta;
+    
+    $value: $base + $diff;
+    .max-#{$value}{
+        max-width: $value + px;
+    }
+}
+
+.square {
+	height: 0;
+	padding-bottom: 100%;
+}
+
+.squares > div {
+	height: 0;
+	padding-bottom: 100%;
+}
+
+// Absolute Helpers
+
+.cover {
+    height: 100vh;
+    width: 100%;
+}
+
+.valign-top {
+    position: absolute;
+    top: 0;
+    bottom: none;
+}
+
+.valign-middle {
+    position: absolute;
+    top: 50%;
+    bottom: none;
+    @include transform(translateY(-50%));
+
+}
+
+valign-bottom {
+    position: absolute;
+    top: none;
+    bottom: 0;
+}
+
+// Text Helpers
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.double-space, .double-space p {
+    line-height: 200%;
+}
+
+.extra-space, .extra-space p {
+    line-height: 166%;
+}
+
+.point-75-space, .point-75-space p {
+    line-height: 175%;
+}
+
+.point-5-space, .point-5-space p {
+    line-height: 150%;
+}
+
+.more-space, .more-space p {
+    line-height: 133%;
+}
+
+.point-25-space, .point-25-space p {
+    line-height: 125%;
+}
+
+// Opacity Helpers
+
+$opacity-map: (
+    "qtr": 25,
+    "third": 33.3333333333,
+    "half": 50,
+    "2-thirds": 66.666666667,
+    "3-qtrs": 75
+);
+
+@each $name, $value in $opacity-map {
+    $number: $value / 100;
+    .op-#{$name} {
+        opacity: #{$number};
+    }
+}
+
+// Other Helpers
+
+.shadow {
+    box-shadow: $black 3px 3px 6px;    
+}

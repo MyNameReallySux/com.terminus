@@ -1,0 +1,145 @@
+// #############################
+//   Basic Shades
+// #############################
+
+$black:         #000000;
+$inverse:       #222222;
+$highlight:     #fffb98;
+$focus:     	#fffb98;
+$white:         #ffffff;
+$transparent:   transparent;
+
+$default-link:    #0000EE;
+$default-visited: #551A8B;
+$default-active:  #FF0000;
+
+// #############################
+//   Brightness Values
+// ############################# 
+
+$b25:   25%;
+$b20:   20%;
+$b15:   15%;
+$b10:   10%;
+$b5:    5%;
+
+$b30:   30%;
+$b24:	24%;
+$b18:	18%;
+$b12:	12%;
+$b6:	6%;
+
+$b35:   35%;
+$b28:   28%;
+$b21:   21%;
+$b14:   14%;
+$b7:    7%;
+
+// #############################
+//   Basic Colors
+// #############################
+
+$alabaster:  #f8f8f8;
+$gallery: 	 #eeeeee;
+$alto: 		 #d3d3d3;
+$silver:     #c0c0c0;
+$grey:       #808080;
+$tundora:	 #4a4a4a;
+$shark:      #25272C;
+
+$cadet:      #a1a1bf;
+$smoke:		 #9191BA;
+$slate:      #708090;
+$metal:      #6b8a99;
+$darkslate:  #2F4F4F;
+
+$champaign:  #F7E7CE;
+$wheat:      #F5DEB3;
+$peach:      #FFE5B4;
+$apricot:    #FBCEB1;
+$coral:      #ff7f50;
+$salmon:     #FF8C69;
+
+$red:        #f44336;
+$crimson:    #e51c23;
+$brick:      #d10000;
+$burgundy:   #800020;
+
+$pink:       #FFCBDB;
+$fuscia:     #ff5dff;
+$rose:       #FF033E;
+$raspberry:  #E30B5C;
+$cerise:     #DE3163;
+
+$orange:     #ffad33;
+$carrot:     #ed9121;
+$pumpkin:    #ff5722;
+$tangelo:    #F94D00;
+$orangered:  #FF4500;
+
+$tan:        #D2B48C;
+$lion:       #c19a6b;
+$brown:      #996b5c;
+$cyote:      #81613E;
+$chocolate:  #7B3F00;
+
+$bronze:     #CD7F32;
+$copper:     #B87333;
+$mahogony:   #c04000;
+$sinopia:    #CB410B;
+$sienna:     #882D17;
+
+$lemon:      #ffff1a;
+$yellow:     #ffeb3b;
+$gold:       #ffD700;
+$amber:      #ffc107;
+$goldenrod:  #daa520;
+
+$lime:       #cddc39;
+$sushi:      #8bc34a;
+$fruitsalad: #4CAF50;
+$green:      #367e3a;
+$forest:     #006400;
+$darkfern:	 #0A480D;
+$crusoe:	 #004200;
+
+$turquoise:  #40E0D0;
+$cyan:       #00bcd4;
+$teal:       #009688;
+
+$koamaru:    #132A7C;
+$cerulean:   #2A45C6;
+$indigo:     #4F69C6;
+$blue:       #2196f3;
+$sky:        #03a9f4;
+
+$lavender:   #d571f2;
+$violet:     #673ab7;
+$purple:     #9c27b0;
+$magenta:    #A10559;
+
+
+// #############################
+//   Theme Colors
+// ############################# 
+
+$prompt:       $blue   or #2196f3;
+$info:         $sky    or #03a9f4;
+$success:      $green  or #4CAF50;
+$warning:      $orange or #ffad33;
+$danger:       $red    or #f44336;
+
+$focus-color:  		lighten($blue, $b5) or #39a1f4;
+$highlight-color:	$highlight 			or #fffb98;
+$shadow-color: 		rgba($black, 0.25);
+
+// #############################
+//   Project Theme Colors
+// ############################# 
+
+$primary:      $blue   or #2196f3;
+$secondary:    $indigo or #3f51b5;
+$tertiary:     $violet or #673ab7;
+$quaternary:   $forest or #8bc34a;
+$quinary:      $yellow or #ffeb3b;
+$senary:       $orange or #ffad33;

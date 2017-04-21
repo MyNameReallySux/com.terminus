@@ -1,0 +1,122 @@
+// #############################
+//   Responsive | Mixins
+// ############################# 
+
+@function reverse-breakpoints($breakpoints){
+	$map: ();
+	@each $breakpoint, $query in $breakpoints {
+		$value: map-get-next($breakpoints, $breakpoint, $no-query);
+		@if $value != $no-query { 
+			$value: $value - 1
+		}
+		$map: map-set($map, $breakpoint, $value);
+	}
+	@return map-reverse($map);
+}
+
+@mixin make-visibility-classes($breakpoints, $mobile-first: false){
+	@if $mobile-first == both {
+		/* Desktop First */
+		@include make-hide-only-class($breakpoints, false);
+		@include make-hide-classes($breakpoints, false);
+		
+		/* Mobile First */
+		@include make-hide-only-class($breakpoints, true);
+		@include make-hide-classes($breakpoints, true);
+	} @else {
+		@include make-hide-only-class($breakpoints, $mobile-first);
+		@include make-hide-classes($breakpoints, $mobile-first);
+	}
+	
+	@include make-hide-class;
+}
+
+@mixin make-hide-classes($breakpoints, $mobile-first: false){
+	@if $mobile-first == true {
+		$breakpoints: reverse-breakpoints($breakpoints);
+	}
+	@each $breakpoint, $query in $breakpoints {
+		@include respond-to($breakpoint, $mobile-first){
+			@if $query != $no-query {
+				@include make-hide-class($breakpoint, $mobile-first, $query);
+			}
+		}
+	}
+}
+
+@mixin make-hide-only-class($breakpoints, $mobile-first: false){
+	$direction: only;
+	$flipped: true;
+	@if $mobile-first == true { 
+		$flipped: false;
+		$breakpoints: reverse-breakpoints($breakpoints);
+	}
+	
+	@each $breakpoint, $query in $breakpoints {
+		@if $query == $no-query {
+			@include respond-to($breakpoint, $flipped){
+				.hide-#{$breakpoint}-#{$direction}{
+					display: none;
+					@content;
+				}
+			}
+		}
+		
+	}
+}
+
+@mixin make-hide-class($breakpoint: null, $mobile-first: false, $query: null){
+	@if $breakpoint != null {
+		$direction: down;
+		@if $mobile-first == true {
+			$direction: up;
+		}
+		.hide-#{$breakpoint}-and-#{$direction}{
+			display: none;
+			@content;
+		}
+	} @else {
+		.hide {
+			display: none;
+			@content;
+		}
+	}
+	
+}
+
+@mixin respond-to($breakpoint, $mobile-first: false, $breakpoints: $breakpoints) {
+    $raw-query: 0;
+
+    @if($mobile-first != true){
+        $raw-query: map-get($breakpoints, $breakpoint); 
+    } @else {
+		$map: reverse-breakpoints($breakpoints);
+        $raw-query: map-get($map, $breakpoint);
+    }
+
+    @if $raw-query {
+        $query: if(
+            type-of($raw-query) == 'string',
+            unquote($raw-query),
+            inspect($raw-query)
+		);
+
+        @if $query and $query != $no-query {
+            @if $mobile-first == true {
+                @media only screen and (max-width: #{$query}) {
+                  @content;
+                } 
+            } @else {
+                @media only screen and (min-width: #{$query}) {
+                  @content;
+                } 
+            }
+            
+        } @else {
+            @content;
+        }  
+    } @else {
+        @error 'No value found for `#{$breakpoint}`. '
+             + 'Please make sure it is defined in `$breakpoints` map.';
+    }
+}

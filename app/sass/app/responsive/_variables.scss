@@ -1,0 +1,28 @@
+// #############################
+//   Responsive | Variables
+// #############################
+
+$xs:   "xs";
+$ms:   "ms";
+$s:    "s";
+$m:    "m";
+$l:    "l";
+$xl:   "xl";
+
+$no-query: "";
+
+$xs-breakpoint:	$no-query;
+$ms-breakpoint:	481px;
+$s-breakpoint:	640px;
+$m-breakpoint:	769px;
+$l-breakpoint:	961px;
+$xl-breakpoint:	1200px;
+
+$breakpoints: (
+    $xs: $xs-breakpoint,                                             
+    $ms: $ms-breakpoint,
+    $s:  $s-breakpoint,
+    $m:  $m-breakpoint,
+    $l:  $l-breakpoint, 
+    $xl: $xl-breakpoint
+);
