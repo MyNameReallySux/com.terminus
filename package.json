@@ -1,5 +1,5 @@
 {
-  "name": "terminus",
+  "name": "radiance",
   "version": "0.0.1",
   "description": "HTML, CSS, and Js framework. Focus on responsive design, reusable and customizable modules. Also focus's on use of Sass mixins to customize your own projects.",
   "main": "app.js",
@@ -18,12 +18,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MyNameReallySux/com.terminus.git"
+    "url": "git+https://github.com/MyNameReallySux/radiant-sass.git"
   },
   "bugs": {
-    "url": "https://github.com/MyNameReallySux/com.terminus/issues"
+    "url": "https://github.com/MyNameReallySux/radiant-sass./issues"
   },
-  "homepage": "https://github.com/MyNameReallySux/com.terminus#readme",
+  "homepage": "https://github.com/MyNameReallySux/radiant-sass#readme",
   "private": true,
   "author": "Chris Coppola <chris.coppola315@gmail.com>",
   "license": "ISC",
