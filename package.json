@@ -4,6 +4,8 @@
   "description": "HTML, CSS, and Js framework. Focus on responsive design, reusable and customizable modules. Also focus's on use of Sass mixins to customize your own projects.",
   "main": "app.js",
   "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -31,7 +33,7 @@
     "body-parser": "^1.15.1",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.1",
-    "express": "^4.14.1",
+    "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
     "font-awesome": "^4.7.0",
     "handlebars": "^4.0.5",
@@ -43,6 +45,8 @@
     "webpack": "^2.1.0"
   },
   "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
     "coffee-loader": "^0.7.3",
     "css-loader": "^0.27.1",
     "extract-text-webpack-plugin": "^2.1.0",

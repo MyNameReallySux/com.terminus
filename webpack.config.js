@@ -79,6 +79,9 @@ var commonConfig = {
 			}, { 
 				test: /\.coffee$/,
 				loader: 'coffee-loader',
+			}, { 
+				test: /\.js/,
+				loader: 'babel-loader',
 			}, {
 			  	test: /\.(png|jpg|svg)$/,
 				query: {
@@ -93,7 +96,7 @@ var commonConfig = {
 }
 
 var jqueryDependentConfig = Object.assign({}, commonConfig, {
-    name: "Terminus (jQuery dependent)",
+    name: "Radiance (jQuery dependent)",
     entry: appendPageJavascript(pages, {
         app: _src + "/jquery/main.js",
         vendor: ["jquery"],
@@ -101,7 +104,7 @@ var jqueryDependentConfig = Object.assign({}, commonConfig, {
     output: {
         path: _public,
 		publicPath: _public,
-        filename: "js/terminus.jquery.js",
+        filename: "js/radiance.jquery.js",
         libraryTarget: "var",
         library: "App"
     },
@@ -109,7 +112,7 @@ var jqueryDependentConfig = Object.assign({}, commonConfig, {
 	plugins: [
         new webpack.optimize.CommonsChunkPlugin({
 			name: "vendor", 
-			filename: "js/terminus.vendor.js"
+			filename: "js/radiance.vendor.js"
 		}),
         new ExtractTextPlugin({
 			filename: 'css/app.css',
@@ -128,14 +131,14 @@ var jqueryDependentConfig = Object.assign({}, commonConfig, {
 });
                                           
 var independentES6Config = Object.assign({}, commonConfig, {
-    name: "Terminus (ES6)",
+    name: "Radiance (ES6)",
     entry: appendPageJavascript(pages, {
         app: _src + "/es6/main.js"
     }),
     output: {
         path: _public,
 		publicPath: _public,
-        filename: "js/terminus.es6.js",
+        filename: "js/radiance.es6.js",
         libraryTarget: "var",
         library: "App"
     },
