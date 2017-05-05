@@ -2,23 +2,20 @@
     Node.js Packages
 ############################## */
 
+var sass = require("../../sass/app.scss");
+var scripts = require("./base/scripts");
+var utils = require("./base/utils");
+
 var $ = jQuery = require("jquery");
 var fa = require("font-awesome-webpack");
-var sass = require("../../sass/app.scss");
 var prism = require("prismjs");
+
 
 /* ##############################
     Local Functions
 ############################## */
 
 function initialize(config){
-    var base = require("./base/base");
-    if(base != undefined){
-        for(func in base){
-            config[func] = base[func]; 
-        }
-    }
-	var scripts = require("./base/scripts");
     if(scripts != undefined){
         for(func in scripts){
             config[func] = scripts[func]; 
@@ -27,9 +24,20 @@ function initialize(config){
     return config;
 }
 
+function initializeUtils(){
+	var functions = {}
+    if(utils != undefined){
+        for(func in utils){
+            functions[func] = utils[func]; 
+        }
+    }
+	return functions;
+}
+
 function initializeComponents(){
 	var files = {}
-	files["accordian"] = require("./components/accordian.coffee");
+	files["accordian"] = require("./components/accordian");
+	files["menu"] = require("./components/menu");
 	files["panel"] = require("./components/panel");
 	return files;
 }
@@ -38,7 +46,8 @@ function initializeComponents(){
     Module Export
 ############################## */
 
-module.exports = window.Terminus = initialize({
-	"components": initializeComponents()
+module.exports = window.Radiance = initialize({
+	components: initializeComponents(),
+	utils: initializeUtils()
 })
 
