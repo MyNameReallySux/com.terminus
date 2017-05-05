@@ -1,0 +1,47 @@
+/* ##############################
+	Menu
+############################## */
+
+// ##############################
+//	.menu (.vertical-menu)
+//		ul
+//			li
+//			...
+//		
+// ############################## 
+
+.menu, .vertical-menu {
+	display: flex;
+	width: 100%;
+	line-height: 2;
+	border: solid 1px $inverse;
+	
+	li {
+		width: 100%;
+		
+		a {
+			padding: 0px 15px;
+			display: block;
+			width: 100%;
+			color: $primary;
+			border-width: 1px;
+			border-color: $white;
+			border-style: solid;
+			@include transition();
+		}
+	}
+	
+	li:hover {
+		a {
+			color: $primary;
+			background: lighten($primary, $b35);
+			border-color: $primary;
+			border-width: 1px 1px 1px 10px;
+			
+		}
+	}
+}
+
+.vertical-menu {
+	flex-direction: column;
+}

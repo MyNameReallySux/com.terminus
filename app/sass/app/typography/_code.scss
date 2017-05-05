@@ -6,15 +6,77 @@ pre, code {
 }
 
 pre {
-    display: block;
-    padding: 10px 10px;
+    display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	justify-content: center;
+	
+    padding: 20px 10px 10px;
     white-space: pre-wrap;
     border: solid 1px; 
 	font-size: 80%;
 	line-height: 1.2;
 
 	> code {
+		display: block;
+		width: 100%;
 		background: none;
+	}
+	
+	&.double {
+		.three-eighths {
+			width: 37.5%
+		}
+		 
+		.five-eighths {
+			width: 62.5%
+		}
+		
+		> code:first-child {
+			order: 1;
+		}
+		> .divider {
+			display: block;
+			position: relative;
+			order: 2;
+			
+			border-left: solid 1px $grey;
+			margin: 0px 15px;
+			
+			&:after {
+				content: attr(data-label);
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				
+				background: $grey;
+				height: 22px;
+				width: 22px;
+				color: $alabaster;
+				border-radius: 50%;
+				text-align: center;
+				line-height: 22px;
+				
+				transform: translate(-50%, -50%);
+			}
+		}
+		
+		&.dark > .divider {
+			border-left: solid 1px $white;
+			
+			&:after {
+				background: $white;
+				color: $dark;
+			}
+		}
+		
+		> code:last-child {
+			order: 3;
+		}
+	}
+	
+	& + p {
+		margin-top: 15px;
 	}
 	
 	&[data-caption] {
@@ -50,17 +112,20 @@ pre {
 		@include border-radius(2px);
 		
         font-family: $font;
-		font-size: 90%;
+		font-size: 85%;
             
     }
     
-    &.language-html {
+    &.language-html {		
 		&:after {
 			content: "HTML5";
 			font-family: Arial, sans-serif;
 			text-transform: uppercase;
-			font-weight: 900;
 		}
+		.comment {
+			color: $grey;
+		}
+		
         .tag {
             color: $indigo;
         }
@@ -73,10 +138,67 @@ pre {
             color: $carrot;
 			
 			& > .punctuation:first-child {
-				color: $purple;
+				color: $black;
 			}
         }
     }
+}
+
+
+
+.code-block.dark pre, pre.dark {
+	background: $shark;
+	border: solid 1px $dark;
+
+	.header {
+		background: $dark;
+	}
+
+	.language-html {	
+		.comment {
+			color: $grey;
+		}
+
+		.tag {
+			color: $indigo;
+		}
+
+		.attr-name {
+			color: $blue;
+		}
+
+		.attr-value {
+			color: $lavender;
+
+			& > .punctuation:first-child {
+				color: $grey;
+			}
+		}
+	}
+}
+
+.code-block {
+	.header {
+		color: $grey;
+		padding: 0px 15px;
+		font-size: 100 * 0.8%;
+		line-height: 2;
+		font-weight: normal;
+		font-style: italic;
+	}
+	pre {
+		padding-top: 10px;
+	}
+	pre:after {
+		line-height: 2;
+		background: transparent;
+		border: none;
+		top: 0;
+		right: 15px;
+
+		font-size: 100%;
+		@include transform(translateY(-100%));
+	}
 }
 
 p code {

@@ -29,8 +29,6 @@ h2, .h2 {
 h3, .h3 {
     font-weight: bold;
     font-size: $h3-size;
-    
-   
 }
 
 h4, .h4 {
@@ -60,24 +58,47 @@ h6, .h6 {
     }
 }
 
+.header-bar {
+	line-height: 2;
+	padding: 0px 15px;
+	text-decoration: none;
+	margin-bottom: 0px;
+}
+
+.header-bar + * {
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
+h5.header-bar + pre:after {
+	font-size: 125% * 1.25;
+	font-weight: normal;
+}
+
+h6.header-bar {
+	font-size: 100%;
+	color: $grey;
+	font-style: italic;
+}
+
 // #############################
 //  Paragraphs
 // #############################
 
-p {
-    text-align: left;
-    line-height: 150%;
+p, blockquote {
+	text-align: left;
+    line-height: 1.4em;
     font-size: 1em;
-    margin-bottom: 15px;
-    
+}
+
+p { 
+	margin-bottom: 15px;
     &.leading:first-letter {
-        display: inline-block;
         font-size: 3em;
-        margin-top: 12px;
         margin-right: 5px;
         float: left;
         font-family: 'Georgia', 'Times', serif;
-        
+		        
         @include respond-to($ms){
             margin-top: 12px;
         }
@@ -147,6 +168,18 @@ q {
     @include normalize-quote();
 }
 
+blockquote {
+	@include clearfix;
+	
+	&.left {
+		float: left;
+	}
+	
+	&.right {
+		float: right;
+	}
+}
+
 blockquote.fancy {
 	background-color: $alabaster;
 	border: solid 4px rgba($grey, 0);    
@@ -160,6 +193,11 @@ blockquote.fancy {
 	color: $grey;
 
 	@include transition();
+	
+	&.left, &.right {
+		max-width: 580px;
+		margin-bottom: 4px;
+	}
 
 	cite {
 		margin-top: 5px;
@@ -181,22 +219,23 @@ blockquote.fancy {
 		font-size: 120%;
 		padding: 15px;
 		quotes: "\201C""\201D""\2018""\2019";
-		text-indent: 50px;
+		text-indent: 30px;
 
 		&:before {
 			content: $fa-var-quote-left;
 			@include fa-icon();
 			position: absolute;   
-			width: 60px;
-			height: 60px;
+			width: 50px;
+			height: 50px;
 			color: $white;
-			left: -45px;
-			top: -15px;   
+			left: 0px;
+			top: -18px;   
 		}  
 		
 		&:before,
 		&:after {
-			font-size: 34px;
+			text-indent: 0px;
+			font-size: 32px;
 			line-height: 1.5;
 		}
 	}
@@ -204,8 +243,8 @@ blockquote.fancy {
 	&:before {
 		content: "";
 		display: block;
-		width: 60px;
-		height: 60px;
+		width: 50px;
+		height: 50px;
 		background-color: $grey;
 		position: absolute;
 		top: -20px;
@@ -223,44 +262,28 @@ blockquote.fancy {
 		}
 		&:before {
 			background-color: $primary;
-			@include border-radius(10%);
+			@include border-radius(25%);
 			@include transform(rotateZ(45deg));
 		}
 	}
-
-	/*
-	&:before,
-	&:after {
-		font-family: $blockquote-font; 
-		font-size: 3em;
-		line-height: 0.1em;
-		vertical-align: -0.5em;
-	}
-
-	&:before {
-		margin-right: 0.25em;
-		content: open-quote;
-	}
-
-	&:after {
-		margin-left: 0.25em;
-		content: close-quote;
-	}
-	*/
 }
 blockquote:not(.fancy) {
 	border-left: solid 4px $primary;
 	padding: 5px 10px;
 	background: $alabaster;
 	margin-bottom: 15px;
+	
+	&.left, &.right {
+		max-width: 500px;
+		margin-bottom: 4px;
+	}
 
 	p {
 		margin: 0;
 	}
 
 	cite {
-		margin-top: 5px;
-		font-size: 80%;
+		margin-top: 4px;
 		text-align: right;
 		display: block;
 		color: $grey;
@@ -283,11 +306,14 @@ hr {
     border-width: 0 0 1px 0;
     border-color: $divider-color;
     background-color: transparent;
+	margin: 20px 0;
 	
 	@include for-each-color($theme-colors, "border-color");
 	@include for-each-color($colors, "border-color"){
 		background: transparent;
 	}
+	
+	@include clearfix(direct);
     
     &.break {
         border-width: 0 0 3px 0;
@@ -343,19 +369,3 @@ hr {
     }
     
 }
-
-
-// WEBPACK FOOTER //
-// ./app/sass/E:/Programming/Projects/Web/com.terminus/app/sass/app/typography/_style.scss
-
-
-// WEBPACK FOOTER //
-// ./app/sass/E:/Programming/Projects/Web/com.terminus/app/sass/app/typography/_style.scss
-
-
-// WEBPACK FOOTER //
-// ./app/sass/E:/Programming/Projects/Web/com.terminus/app/sass/app/typography/_style.scss
-
-
-// WEBPACK FOOTER //
-// ./app/sass/E:/Programming/Projects/Web/com.terminus/app/sass/app/typography/_style.scss

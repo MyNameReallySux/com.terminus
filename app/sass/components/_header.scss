@@ -1,0 +1,183 @@
+/* ##############################
+	Header
+############################## */
+
+// ##############################
+//	header
+//		.top-bar
+//			.container
+//				...
+//		.nav-bar
+//			.container
+//				.menu-button
+//					.bar
+//					.bar
+//					.bar
+//				.nav-menu
+//					ul
+//						li
+//							a
+//						ul
+//							li...
+// ############################## 
+
+header {
+	.top-bar {
+		
+	}
+	.nav-bar {
+		&.dark {
+			a {
+				color: white;
+			}
+		}
+		
+		&.light {
+			a {
+				color: black;
+			}
+		}
+		
+		.menu-button {
+			padding: 10px;
+			display: block;
+			width: 40px;
+			height: 37px;
+			text-align: center;
+			margin: 0px auto;
+			cursor: pointer;
+			@include show();
+			@include border-radius(3px);
+			@include transition();
+			
+			@include respond-to($m){
+				@include hide(0, 0);
+			}
+			
+			.bar {
+				display: block;
+				position: relative;
+				background: $white;
+				height: 3px;
+				width: 20px;
+				left: 0;
+				@include border-radius(3px);
+				@include transition();
+			}
+			
+			.bar + .bar {
+				margin-top: 4px;
+			}
+			
+			&:hover {
+				.bar {
+					background: $primary;
+				}
+			}
+		}
+		
+		.nav-menu {
+			display: flex;
+			justify-content: space-around;
+			line-height: 3;
+
+			@include transition(
+				max-height 0.8s ease 0s,
+				background-color 0.4s ease 0s,
+				opacity 0.4s ease 0s,
+				visibility 0s ease 0.4s
+
+			);
+			@include show();
+
+			> li {
+				flex-grow: 3;
+				text-align: center;
+
+				> a {
+					display: block;
+					width: 100%;
+
+					@include transition();
+				}
+
+				&:hover {
+					> a {
+						background: $primary;
+						color: $white;
+					}
+				}
+			}
+
+			> li > ul {
+				display: none;
+			}
+
+			ul {
+				flex-direction: column;
+			}	
+		}
+	}
+	
+	&.fixed, .nav-bar.fixed {
+		top: 0;
+		width: 100%;
+		z-index: 200;
+	}
+}
+
+header.fixed + * {
+	padding-top: 105px;
+}
+
+@include respond-to($s, true){
+	header {
+		.nav-bar {
+			.nav-menu {
+				@include hide(false, 0);
+				flex-direction: column;
+				background: $inverse;
+			}
+			
+			.nav-menu:not(.open){
+				line-height: 0;
+			}
+			
+			.menu-button.open {
+				transform: rotate(90deg);
+
+				.bar {
+					left: 2px;
+				}
+				.bar:nth-of-type(1){
+					transform: rotate(45deg);
+					transform-origin: left center;
+				}
+				.bar:nth-of-type(2){
+					opacity: 0;
+				}
+				.bar:nth-of-type(3){
+					transform: rotate(-45deg);
+					transform-origin: left center;
+				}
+
+				&:hover {
+					.bar {
+						background: $red;
+					}
+				}
+			}
+
+			.nav-menu.open {
+				@include show($max: 600px);
+				background: $shark;
+				
+				@include transition(
+					max-height 0.8s ease 0s,
+					background-color 0.4s ease 0s,
+					opacity 0.4s ease 0s
+				);
+			}
+		}
+	}
+}

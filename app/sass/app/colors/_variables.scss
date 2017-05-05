@@ -46,6 +46,7 @@ $silver:     #c0c0c0;
 $grey:       #808080;
 $tundora:	 #4a4a4a;
 $shark:      #25272C;
+$inverse:	 #181818;
 
 $cadet:      #a1a1bf;
 $smoke:		 #9191BA;
@@ -123,11 +124,14 @@ $magenta:    #A10559;
 //   Theme Colors
 // ############################# 
 
-$prompt:       $blue   or #2196f3;
-$info:         $sky    or #03a9f4;
-$success:      $green  or #4CAF50;
-$warning:      $orange or #ffad33;
-$danger:       $red    or #f44336;
+$prompt:       	$blue       or #2196f3;
+$info:         	$sky        or #03a9f4;
+$success:      	$green      or #4CAF50;
+$warning:      	$orange     or #ffad33;
+$danger:        $red        or #f44336;
+
+$dark:			$inverse	or #181818;
+$light:			$alabaster  or #f8f8f8;
 
 $focus-color:  		lighten($blue, $b5) or #39a1f4;
 $highlight-color:	$highlight 			or #fffb98;

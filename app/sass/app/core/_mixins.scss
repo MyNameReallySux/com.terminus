@@ -15,16 +15,34 @@
 	}
 }
 
-@mixin show($height: auto){
-    height: $height;
+@mixin show($height: auto, $padding: false, $max: none, $display: false){
+    @if $height != false {
+		height: $height;
+	}
     visibility: visible;
     opacity: 1;
+	max-height: $max;
+	@if $padding != false {
+		padding: $padding;
+	}
+	@if $display != false {
+		display: $display;
+	}
 }
 
-@mixin hide($height: 0){
-    height: $height;
+@mixin hide($height: false, $padding: false, $max: 0px, $display: false){
+    @if $height != false {
+		height: $height;
+	}
     visibility: hidden;
     opacity: 0;
+	max-height: 0px;
+	@if $padding != false {
+		padding: $padding;
+	}
+	@if $display != false {
+		display: $display;
+	}
 }
 
 // #############################

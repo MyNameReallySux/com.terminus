@@ -90,7 +90,8 @@ $colors: (
     "silver"     $silver,     
     "grey"       $grey,       
     "tundora"    $tundora,      
-    "shark"      $shark,     
+    "shark"      $shark,   
+	"inverse"    $inverse,
 
     "cadet"      $cadet,       
     "smoke"      $smoke,      
@@ -173,7 +174,10 @@ $theme-colors: (
     "info":         $sky,
     "success":      $green,
     "warning":      $orange,
-    "danger":       $red
+    "danger":       $red,
+	
+	"dark": 		$dark,
+	"light": 		$light
 );
 
 // #############################

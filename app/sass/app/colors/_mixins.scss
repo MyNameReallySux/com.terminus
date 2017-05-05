@@ -2,6 +2,14 @@
 //   Mixins
 // ############################# 
 
+@function get-text-color($color) {
+	@if (lightness($color) > 50) {
+		@return #000000;
+	} @else {
+		@return #ffffff;
+	}
+}
+
 @function is-direction($value) {
     $is-keyword: index((to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
     $is-angle: type-of($value)=='number' and index('deg' 'grad' 'turn' 'rad', unit($value));
@@ -74,6 +82,7 @@
 	@if $modifier == null {
 		.#{$color}:not(svg) {
 			background: $hex;
+			color: get-text-color($hex);
 		}
 
 		.#{$color}-text {
